@@ -14,10 +14,10 @@ const arrayNotas = [
 
 const arrayBeca = [
     {id:2, beca:true},
-    {id:4, beca:false},
+    {id:5, beca:false},
 ]
 
-const id = 2;//Aqui introducimos el id del alumno del que queramos verificar nota y beca
+const id = 5;//Aqui introducimos el id del alumno del que queramos verificar nota y beca
 //funcion que compruebba si existe un alumno con este id, primero se resuelve el 
 const getAlumno = (id, cb) => {
     const alumno = arrayAlumnos.find((item) => item.id === id)?.nombre//comprueba que el id y por lo tanto el alumno existe
@@ -42,10 +42,10 @@ const getNota = (id, cb) => {//damos de argumentos el id y un callback
 //funcion que comprueba si existe una beca asignada al id del alumno introducido
 const getBeca = (id,cb) => {//damos de argumentos el id y el callback 
     let beca = arrayBeca.find((item)=> item.id === id)?.beca;
-    if(!beca){
+    if(beca == undefined){
         cb(`El alumno no ha pedido la beca`,null);//mandara a error el alumno no ha pedido beca y alumno como null
     } else {
-            cb(null,beca);//manda como null error y beca como true
+            cb(null,beca);//manda como null error y beca como true o false
     }
 
 }
@@ -69,7 +69,9 @@ getAlumno(id, (error, alumno) => {//el id es igual para get alumno, get nota y g
                         if(beca==true){
                             console.log(`${alumno} es aptx para la beca`)
                         }else{
+                            if(beca==false){
                             console.log(`${alumno} no es aptx para la beca`)
+                            }
                         }
                     }
                 })
